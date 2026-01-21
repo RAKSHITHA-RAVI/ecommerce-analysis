@@ -1,0 +1,102 @@
+/* =========================================================
+   PROJECT: E-commerce Sales & Customer Insights
+   DATASET: bigquery-public-data.thelook_ecommerce
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   1. DATASET CHECK – Row Count
+   --------------------------------------------------------- */
+SELECT
+  COUNT(*) AS rows_count
+FROM `bigquery-public-data.thelook_ecommerce.order_items`;
+
+
+/* ---------------------------------------------------------
+   2. TOTAL REVENUE (Completed Orders Only)
+   --------------------------------------------------------- */
+SELECT 
+  ROUND(SUM(sale_price), 2) AS total_revenue
+FROM `bigquery-public-data.thelook_ecommerce.order_items`
+WHERE status = 'Complete';
+
+
+/* ---------------------------------------------------------
+   3. MONTHLY REVENUE TREND
+   --------------------------------------------------------- */
+SELECT
+  FORMAT_DATE('%Y-%m', DATE(created_at)) AS month,
+  ROUND(SUM(sale_price), 2) AS monthly_revenue
+FROM `bigquery-public-data.thelook_ecommerce.order_items`
+WHERE status = 'Complete'
+GROUP BY month
+ORDER BY month;
+
+
+/* ---------------------------------------------------------
+   4. TOP 10 PRODUCTS BY REVENUE
+   --------------------------------------------------------- */
+SELECT
+  p.name AS product_name,
+  ROUND(SUM(oi.sale_price), 2) AS revenue
+FROM `bigquery-public-data.thelook_ecommerce.order_items` oi
+JOIN `bigquery-public-data.thelook_ecommerce.products` p
+  ON oi.product_id = p.id
+WHERE oi.status = 'Complete'
+GROUP BY product_name
+ORDER BY revenue DESC
+LIMIT 10;
+
+
+/* ---------------------------------------------------------
+   5. REVENUE BY COUNTRY
+   --------------------------------------------------------- */
+SELECT
+  u.country,
+  ROUND(SUM(oi.sale_price), 2) AS revenue
+FROM `bigquery-public-data.thelook_ecommerce.order_items` oi
+JOIN `bigquery-public-data.thelook_ecommerce.users` u
+  ON oi.user_id = u.id
+WHERE oi.status = 'Complete'
+GROUP BY u.country
+ORDER BY revenue DESC;
+
+
+/* ---------------------------------------------------------
+   6. AVERAGE ORDER VALUE (AOV)
+   --------------------------------------------------------- */
+SELECT
+  ROUND(
+    SUM(sale_price) / COUNT(DISTINCT order_id),
+    2
+  ) AS avg_order_value
+FROM `bigquery-public-data.thelook_ecommerce.order_items`
+WHERE status = 'Complete';
+
+
+/* ---------------------------------------------------------
+   7. REPEAT vs ONE-TIME CUSTOMERS
+   --------------------------------------------------------- */
+SELECT
+  customer_type,
+  COUNT(*) AS number_of_customers
+FROM (
+  SELECT
+    user_id,
+    CASE
+      WHEN COUNT(DISTINCT order_id) > 1 THEN 'Repeat'
+      ELSE 'One-time'
+    END AS customer_type
+  FROM `bigquery-public-data.thelook_ecommerce.orders`
+  WHERE status = 'Complete'
+  GROUP BY user_id
+)
+GROUP BY customer_type;
+
+
+/* ---------------------------------------------------------
+   8. LIST ALL TABLES IN THE DATASET (REFERENCE)
+   --------------------------------------------------------- */
+SELECT
+  table_name
+FROM `bigquery-public-data.thelook_ecommerce.INFORMATION_SCHEMA.TABLES`;
