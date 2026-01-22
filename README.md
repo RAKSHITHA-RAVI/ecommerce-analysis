@@ -1,7 +1,7 @@
 # E-commerce Sales & Customer Insights Analysis
 ## 📊 Dashboard Preview
 
-![E-commerce Dashboard](dashboard photo.png)
+![E-commerce Dashboard](dashboard_photo.png)
 
 ##  Project Overview
 This project presents an end-to-end analysis of real-world e-commerce transaction data to uncover insights related to revenue trends, product performance, geographic distribution, and customer behavior. The goal is to support data-driven business decisions through structured SQL analysis and interactive dashboarding.
