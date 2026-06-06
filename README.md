@@ -4,7 +4,7 @@
 
 [![BigQuery](https://img.shields.io/badge/SQL-Google%20BigQuery-blue?style=flat-square)](https://cloud.google.com/bigquery)
 [![Power BI](https://img.shields.io/badge/Power%20BI-Dashboard-yellow?style=flat-square)]()
-[![Status](https://img.shields.io/badge/Status-Complete-brightgreen?style=flat-square)]()
+
 
 ---
 
