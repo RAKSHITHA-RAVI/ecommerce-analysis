@@ -1,73 +1,123 @@
-# E-commerce Sales & Customer Insights Analysis
+# 🛒 E-Commerce Sales & Customer Insights Analysis
+
+> End-to-end e-commerce analysis on Google BigQuery's public dataset — uncovering revenue drivers, customer retention gaps, and geographic concentration using advanced SQL and Power BI.
+
+[![BigQuery](https://img.shields.io/badge/SQL-Google%20BigQuery-blue?style=flat-square)](https://cloud.google.com/bigquery)
+[![Power BI](https://img.shields.io/badge/Power%20BI-Dashboard-yellow?style=flat-square)]()
+[![Status](https://img.shields.io/badge/Status-Complete-brightgreen?style=flat-square)]()
+
+---
+
+## 📌 Project Summary
+
+Most e-commerce businesses have revenue data — but few know *which products are carrying the business*, *where customer loyalty is breaking down*, or *which markets are underperforming*.
+
+This project runs a full analyst workflow on a real-world BigQuery e-commerce dataset: SQL-based analysis across orders, products, customers, and geographies — then visualized in an interactive Power BI dashboard with actionable business recommendations.
+
+**Bottom line:** Revenue is heavily concentrated in a handful of products and two countries. Repeat customers are a small share of the base — a major retention opportunity sitting untouched.
+
+---
+
 ## 📊 Dashboard Preview
 
-![E-commerce Dashboard](dashboard_photo.png)
-
-##  Project Overview
-This project presents an end-to-end analysis of real-world e-commerce transaction data to uncover insights related to revenue trends, product performance, geographic distribution, and customer behavior. The goal is to support data-driven business decisions through structured SQL analysis and interactive dashboarding.
-
-The project follows a complete data analyst workflow: data exploration, analysis, visualization, and business recommendations.
+![E-Commerce Dashboard](dashboard_photo.png)
 
 ---
 
-## Dataset
-- **Source:** Google BigQuery Public Dataset  
-- **Dataset Name:** `bigquery-public-data.thelook_ecommerce`
+## 🎯 Business Questions Answered
 
-### Tables Used
-- `order_items`
-- `orders`
-- `products`
-- `users`
-
-The dataset contains e-commerce transactions, product details, customer information, and geographic attributes.
-
----
-
-## 🛠 Tools & Technologies
-- **SQL:** Google BigQuery  
-- **Data Visualization:** Power BI Desktop  
-- **Data Handling:** CSV exports  
-- **Version Control:** GitHub  
+| Question | Finding |
+|---|---|
+| How has revenue trended over time? | Steady growth followed by a recent decline — likely seasonality or data lag |
+| Which products drive the most revenue? | Small product cluster accounts for disproportionate share — concentration risk |
+| Which countries generate the highest revenue? | China and USA dominate; most other markets underperform |
+| What is the average order value? | High AOV — strong pricing power exists |
+| How many customers are repeat buyers? | Repeat buyers are a small % — significant retention gap |
+| Is revenue too concentrated? | Yes — both by product and by geography |
 
 ---
 
-## ❓ Business Questions Addressed
-- How has revenue changed over time?
-- Which products contribute the most to total revenue?
-- Which countries generate the highest revenue?
-- What is the average order value?
-- What percentage of customers are repeat buyers?
-- Is revenue concentrated across specific products or regions?
+## 🗂️ Project Structure
+
+```
+ecommerce-analysis/
+│
+├── sql_queries.sql          # All BigQuery SQL queries (rename from .sql.txt)
+├── dashboard.pbix           # Power BI report file
+├── dashboard_photo.png      # Dashboard screenshot
+├── Bigquery.png             # BigQuery query screenshot
+├── Insights_recomm.docx     # Full business insights & recommendations
+└── README.md
+```
 
 ---
 
-## 📈 Dashboard Overview
-The Power BI dashboard includes:
-- Key Performance Indicators (Total Revenue, Total Customers, Average Order Value)
-- Monthly revenue trend analysis
-- Top-performing products by revenue
-- Revenue distribution by country
-- Customer segmentation (Repeat vs One-Time customers)
-- Revenue contribution analysis by country and product
+## 📦 Dataset
 
- Dashboard screenshots are included in this repository.
+- **Source:** Google BigQuery Public Dataset
+- **Dataset:** `bigquery-public-data.thelook_ecommerce`
+- **Tables Used:** `order_items`, `orders`, `products`, `users`
+- **Scope:** Real e-commerce transactions with product details, customer info, and geographic attributes
 
 ---
 
-##  Key Business Insights
-- Revenue shows steady growth over time, followed by a decline in the most recent period, suggesting possible seasonality or incomplete data.
-- A small number of products contribute a significant share of total revenue, indicating product concentration risk.
-- Revenue is heavily concentrated in a few countries, particularly China and the United States.
-- Repeat customers form a relatively small portion of the customer base, highlighting strong retention opportunities.
-- The average order value remains high, indicating strong pricing power.
+## 🔄 Workflow
+
+```
+1. Data Exploration   →  BigQuery SQL — understand schema, row counts, nulls
+2. Analysis           →  Revenue trends, product performance, geo distribution, retention
+3. Export             →  CSV exports from BigQuery → Power BI
+4. Dashboard          →  Interactive Power BI report with KPIs and segment views
+5. Recommendations    →  Business-ready insights document
+```
 
 ---
 
-##  Business Recommendations
-- Implement customer retention strategies such as loyalty programs and personalized offers.
-- Diversify revenue by promoting mid-tier and emerging products.
-- Expand marketing efforts in underperforming geographic regions.
-- Investigate the recent revenue decline to identify root causes.
-- Leverage high average order value through upselling and cross-selling strategies.
+## 🛠️ Tech Stack
 
+| Layer | Tools |
+|---|---|
+| Data Querying | Google BigQuery (Advanced SQL) |
+| Data Visualization | Power BI Desktop |
+| Data Export | CSV |
+| Documentation | Microsoft Word |
+| Version Control | Git, GitHub |
+
+---
+
+## 🔍 Key SQL Analyses
+
+- Monthly and quarterly revenue trend queries
+- Product-level revenue ranking and concentration analysis
+- Country-level revenue distribution
+- Customer segmentation — repeat vs. one-time buyers
+- Average order value calculation
+- Cohort-style retention analysis
+
+---
+
+## 📈 Key Insights
+
+- Revenue grew steadily before a **recent period decline** — warrants investigation into seasonality or funnel drop-off
+- **Top products are over-indexed** — a small SKU cluster drives a disproportionate share of total revenue, creating product concentration risk
+- **China and USA** account for the majority of revenue; most other markets are significantly underperforming
+- **Repeat buyers are a small share** of total customers — the retention funnel is leaking and loyalty programs are absent
+- **Average order value is strong** — upsell and cross-sell opportunities exist but are not being captured
+
+---
+
+## 💡 Business Recommendations
+
+1. **Launch a retention program** — loyalty rewards, post-purchase email sequences, and personalized offers targeted at one-time buyers to convert them into repeat customers
+2. **Diversify the product portfolio** — mid-tier and emerging products need marketing investment to reduce revenue concentration risk
+3. **Expand geographic reach** — underperforming markets need localized campaigns and pricing strategy reviews
+4. **Investigate the revenue decline** — root cause analysis needed: is this a data lag, seasonal dip, or a structural funnel issue?
+5. **Activate upsell and cross-sell** — high AOV customers are an underutilized asset; bundling and recommendations can increase revenue per order further
+
+---
+
+## 🔗 Connect
+
+**Rakshitha Ravishankar** — Data & AI Analyst  
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/rakshitha-ravishankar29/)
+[![GitHub](https://img.shields.io/badge/GitHub-Profile-black?style=flat-square&logo=github)](https://github.com/RAKSHITHA-RAVI)
